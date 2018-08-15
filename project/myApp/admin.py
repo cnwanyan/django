@@ -3,9 +3,19 @@ from django.contrib import admin
 # Register your models here.
 from .models import Grades,Students
 
+#学生信息添加栏
+class StudentsInfo(admin.TabularInline):
+                #或者admin.StackedInline
+                #只是显示效果不同
+    model= Students
+    extra = 2
+
 #自定义管理页面
 class GradesAdmin(admin.ModelAdmin):
     #列表页属性
+
+    #加两行学生的添加
+    inlines = [StudentsInfo]
 
     #显示字段
     list_display = ['pk','gname','gdate','ggirlnum','gboynum','isDelete']
