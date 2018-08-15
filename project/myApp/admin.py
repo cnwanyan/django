@@ -11,6 +11,7 @@ class StudentsInfo(admin.TabularInline):
     extra = 2
 
 #自定义管理页面
+@admin.register(Grades)
 class GradesAdmin(admin.ModelAdmin):
     #列表页属性
 
@@ -58,8 +59,12 @@ class StudentAdmin(admin.ModelAdmin):
     list_display = ['pk', 'sname', sgender, 'sage', 'scontend', 'sgrade','isDelete']
     list_per_page = 5
 
+    #执行动作的位置
+    actions_on_top = False
+    actions_on_bottom = True
 
-#注册
-admin.site.register(Grades,GradesAdmin)
+
+#注册  日后将使用装饰器完成注册在class上加上@admin.register
+#admin.site.register(Grades,GradesAdmin)
 
 admin.site.register(Students,StudentAdmin)
