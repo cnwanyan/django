@@ -45,7 +45,17 @@ class GradesAdmin(admin.ModelAdmin):
     ]
 
 class StudentAdmin(admin.ModelAdmin):
-    list_display = ['pk', 'sname', 'sgender', 'sage', 'scontend', 'sgrade','isDelete']
+    #渲染字段内容
+    def sgender(self):
+        if self.sgender:
+            return "男"
+        else:
+            return "女"
+
+    #设置列名称
+    sgender.short_description = "性别"
+
+    list_display = ['pk', 'sname', sgender, 'sage', 'scontend', 'sgrade','isDelete']
     list_per_page = 5
 
 
